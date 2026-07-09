@@ -1,12 +1,32 @@
 # BistroMathWorks Skills
 
-Agent skills for Claude, built by [BistroMathWorks](https://github.com/Bistromath-Works). Each skill is a self-contained folder with a `SKILL.md` (instructions + trigger description) and optional `references/` files the agent loads on demand.
+Agent skills for Claude, built by [BistroMathWorks](https://github.com/Bistromath-Works). Each skill is a self-contained folder with a `SKILL.md` (instructions + trigger description) and optional supporting files the agent loads on demand.
+
+The repo is split by where the skill runs:
+
+- **`coding/`** — skills for Claude Code and agentic engineering workflows (hooks, reviews, build tooling)
+- **`general/`** — skills for Claude anywhere (claude.ai, Claude Desktop / Cowork, Claude Code) covering business, decisions, and everything that isn't code
 
 ## Skills
 
-| Skill | What it does |
-|---|---|
-| [never-lose](never-lose/) | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
+| Skill | Category | What it does |
+|---|---|---|
+| [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
+| [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
+
+Yes, both are Munger. Inversion works on code and on business decisions; the two skills are siblings — one grills the build, the other grills the builder.
+
+---
+
+## munger — invert the build
+
+> "All I want to know is where I'm going to die, so I'll never go there." — Charlie Munger
+
+You just declared something done. Done is a claim, not a fact. Munger turns the claim upside down: instead of "is it right?", it asks **"how would I guarantee this fails, and how does it poison the rest of the system?"**
+
+Runs up to 3 rounds of invert → verify → fix CRITICAL/HIGH → re-invert, stopping on a clean pass. Every round must verify at least one checkable claim empirically — inversion that stays theoretical is rubber-stamping. Ships with a zero-dependency Node Stop hook that auto-fires the review when a turn actually completes a build (`git commit`, `git push`, `gh pr create`), plus a hermetic test suite.
+
+Full docs, hook wiring, and tests: [coding/munger/README.md](coding/munger/README.md)
 
 ---
 
@@ -27,43 +47,37 @@ It runs an adversarial interview against any business commitment: a hire, a clie
 
 ### Triggers
 
-Say any of these to Claude once the skill is installed:
-
 - "Grill me on this decision"
 - "Invert this" / "Run the Munger lens"
 - "What would guarantee this fails?"
 - "Poke holes in this business plan / hire / deal"
 - "Make sure this never happens again" (post-mortems)
 
-### Installation
-
-**Claude Code:** copy the skill folder into your skills directory:
-
-```bash
-git clone https://github.com/Bistromath-Works/bistromath-skills.git
-cp -r bistromath-skills/never-lose ~/.claude/skills/never-lose
-```
-
-Or for a single project, place it in `.claude/skills/never-lose/` inside the repo.
-
-**Claude.ai / Claude Desktop (Cowork):** zip the `never-lose` folder and upload it as a skill under Settings → Capabilities, or use the skill-creator flow to import it.
-
 ### Structure
 
 ```
-never-lose/
+general/never-lose/
   SKILL.md              ← trigger description + interview ground rules, core moves, session shape
   references/
     moves.md            ← full move library with worked examples, loaded on demand
 ```
 
-### Design notes
+---
 
-- The skill interviews; it doesn't lecture. Turns end on one or two pointed questions, never a barrage.
-- It grounds in your actual history when a knowledge base is available (Obsidian vault, CRM data, decision logs) rather than generic business wisdom.
-- Inversion isn't only defense — "what kills this?" routinely surfaces unexploited structural advantages (move 7, "find the hidden bridge").
-- Voice: blunt, concrete, witty, declarative. Never coddles, never humiliates.
+## Installation
+
+**Claude Code:** copy the skill folder into your skills directory:
+
+```bash
+git clone https://github.com/Bistromath-Works/bistromath-skills.git
+cp -r bistromath-skills/general/never-lose ~/.claude/skills/never-lose
+cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
+```
+
+Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install).
+
+**Claude.ai / Claude Desktop (Cowork):** zip the skill folder and upload it as a skill under Settings → Capabilities.
 
 ## License
 
-MIT
+[MIT](LICENSE)
