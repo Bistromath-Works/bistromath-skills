@@ -6,6 +6,7 @@ The repo is split by where the skill runs:
 
 - **`coding/`** — skills for Claude Code and agentic engineering workflows (hooks, reviews, build tooling)
 - **`general/`** — skills for Claude anywhere (claude.ai, Claude Desktop / Cowork, Claude Code) covering business, decisions, and everything that isn't code
+- **`real-estate/`** — skills for real estate agents and the deal side of the business (Cowork-first)
 
 ## Skills
 
@@ -13,6 +14,7 @@ The repo is split by where the skill runs:
 |---|---|---|
 | [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
 | [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
+| [doolittle](real-estate/doolittle/) | real-estate | Deal-side copilot that keeps deals alive — preps, triages, and debriefs agents against a veteran lender's standard, and coaches between deals |
 
 Yes, both are Munger. Inversion works on code and on business decisions; the two skills are siblings — one grills the build, the other grills the builder.
 
@@ -64,6 +66,20 @@ general/never-lose/
 
 ---
 
+## doolittle — the deal-side copilot
+
+> "The difference between a lady and a flower girl is not how she behaves, but how she's treated." — Eliza Doolittle, *Pygmalion*
+
+**Doolittle keeps your deals alive.** Deals rarely die over the house; they die over the money — hearsay repeated as fact, promises made on someone else's capacity, panic met with panic, the question nobody asked. Doolittle sits with the agent through exactly those moments.
+
+Four modes: **Prep me** (pre-conversation brief — triggers to listen for, what to verify, the one promise not to make) · **Help me now** (live triage: known vs heard, what must be verified before anyone acts, when to stop and call the lender) · **Debrief** (the real rep graded against the standard, correction logged) · **Drill** (scenario reps between deals that withhold a fact you only find by asking).
+
+It grades the questions you asked, not the answers you gave, against a standards pack extracted from 16 years of mortgage lending. Every consult logs to a per-agent curriculum file, so corrections compound. The bar: *fluent enough to re-explain, humble enough not to originate.*
+
+Full docs: [real-estate/doolittle/README.md](real-estate/doolittle/README.md)
+
+---
+
 ## Installation
 
 **Claude Code:** copy the skill folder into your skills directory:
@@ -72,6 +88,7 @@ general/never-lose/
 git clone https://github.com/Bistromath-Works/bistromath-skills.git
 cp -r bistromath-skills/general/never-lose ~/.claude/skills/never-lose
 cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
+cp -r bistromath-skills/real-estate/doolittle ~/.claude/skills/doolittle
 ```
 
 Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install).
