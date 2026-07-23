@@ -2,6 +2,23 @@
 
 Agent skills for Claude, built by [BistroMathWorks](https://github.com/Bistromath-Works). Each skill is a self-contained folder with a `SKILL.md` (instructions + trigger description) and optional supporting files the agent loads on demand.
 
+## Install as a plugin (recommended)
+
+The fastest way to get these skills: this repo is a Claude plugin marketplace. In Claude Code or Cowork:
+
+```
+/plugin marketplace add Bistromath-Works/bistromath-skills
+/plugin install bistromath-thinking-tools@bistromath-skills
+/plugin install bistromath-realestate-tools@bistromath-skills
+```
+
+- **[bistromath-thinking-tools](plugins/bistromath-thinking-tools/)** — grill-me, grill-with-docs, ideation-partner, never-lose, munger (auto-fire Stop hook wired), and doolittle in one shot.
+- **[bistromath-realestate-tools](plugins/bistromath-realestate-tools/)** — comp-crusher, listing-arsenal, open-house-machine, sphere-engine, prospector (by [Miron Briley / CyclSales](https://github.com/miron-tech/realtor-claude-skills), MIT, repackaged with credit), plus BistroMathWorks originals newsletter-analyzer, presentation-strategist, and offer-extractor.
+
+grill-me and grill-with-docs were written by [Matt Pocock](https://github.com/mattpocock) — bundled with full credit.
+
+Prefer individual skills? Zip downloads and manual install are in [Installation](#installation) below.
+
 The repo is split by where the skill runs:
 
 - **`coding/`** — skills for Claude Code and agentic engineering workflows (hooks, reviews, build tooling)

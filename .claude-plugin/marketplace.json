@@ -1,0 +1,46 @@
+{
+  "name": "bistromath-skills",
+  "owner": {
+    "name": "BistroMathWorks",
+    "email": "info@bistromathworks.com"
+  },
+  "metadata": {
+    "description": "BistroMathWorks plugin marketplace \u2014 thinking tools for stress-testing plans, decisions, code, and real estate deals."
+  },
+  "plugins": [
+    {
+      "name": "bistromath-thinking-tools",
+      "source": "./plugins/bistromath-thinking-tools",
+      "description": "BistroMath Thinking Tools \u2014 adversarial plan grilling (grill-me and grill-with-docs, written by Matt Pocock and repackaged here with full credit \u2014 a great idea worth bundling), guided ideation (ideation-partner), Munger-style inversion for business decisions (never-lose) and code (munger), and Doolittle, the deal-side copilot for real estate agents.",
+      "version": "0.1.0",
+      "author": {
+        "name": "BistroMathWorks"
+      },
+      "license": "MIT",
+      "keywords": [
+        "ideation",
+        "inversion",
+        "grilling",
+        "decision-making",
+        "real-estate"
+      ]
+    },
+    {
+      "name": "bistromath-realestate-tools",
+      "source": "./plugins/bistromath-realestate-tools",
+      "description": "BistroMath Real Estate Tools \u2014 8 skills for working agents: comps and pricing (comp-crusher), listing marketing (listing-arsenal), open houses (open-house-machine), sphere nurture (sphere-engine), prospecting (prospector) \u2014 written by Miron Briley/CyclSales (MIT) and repackaged with full credit \u2014 plus BistroMathWorks originals: newsletter-analyzer, presentation-strategist, and offer-extractor for mortgage client emails.",
+      "version": "0.1.0",
+      "author": {
+        "name": "BistroMathWorks"
+      },
+      "license": "MIT",
+      "keywords": [
+        "real-estate",
+        "comps",
+        "listing-marketing",
+        "prospecting",
+        "mortgage"
+      ]
+    }
+  ]
+}

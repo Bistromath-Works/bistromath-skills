@@ -1,0 +1,20 @@
+{
+  "name": "bistromath-thinking-tools",
+  "version": "0.1.0",
+  "description": "BistroMath Thinking Tools \u2014 adversarial plan grilling (grill-me and grill-with-docs, written by Matt Pocock and repackaged here with full credit \u2014 a great idea worth bundling), guided ideation (ideation-partner), Munger-style inversion for business decisions (never-lose) and code (munger), and Doolittle, the deal-side copilot for real estate agents.",
+  "author": {
+    "name": "BistroMathWorks",
+    "email": "info@bistromathworks.com"
+  },
+  "homepage": "https://github.com/Bistromath-Works/bistromath-skills",
+  "repository": "https://github.com/Bistromath-Works/bistromath-skills",
+  "license": "MIT",
+  "keywords": [
+    "ideation",
+    "inversion",
+    "grilling",
+    "decision-making",
+    "real-estate",
+    "munger"
+  ]
+}
