@@ -10,6 +10,6 @@ for manifest in */*/SKILL.md plugins/*/skills/*/SKILL.md; do
   skill=$(dirname "$manifest")
   name=$(basename "$skill")
   [ -f "dist/$name.zip" ] && continue
-  (cd "$(dirname "$skill")" && zip -rq "$root/dist/$name.zip" "$name" -x "*.DS_Store")
+  (cd "$(dirname "$skill")" && zip -rq "$root/dist/$name.zip" "$name" -x "*.DS_Store" -x "$name/evals/*")
   echo "built dist/$name.zip"
 done
