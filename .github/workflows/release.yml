@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Fail if plugin skill copies drifted from canonical
+        run: ./sync-plugins.sh && git diff --exit-code plugins/
       - run: ./build.sh
       - uses: softprops/action-gh-release@v2
         with:
