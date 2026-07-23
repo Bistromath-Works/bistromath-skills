@@ -109,6 +109,8 @@ Full docs: [real-estate/doolittle/README.md](real-estate/doolittle/README.md)
 1. Download the skill's `.zip` from the [latest release](https://github.com/Bistromath-Works/bistromath-skills/releases/latest) — no git or terminal needed. (Building from source: `./build.sh` puts the zips in `dist/`.)
 2. In Claude Desktop: **Settings → Capabilities → Skills → upload the zip.**
 
+Release zips cover every skill in the repo — the seven listed above plus the plugin-bundled ones (the eight [realestate-tools](plugins/bistromath-realestate-tools/) skills and ideation-partner).
+
 **Claude Code:** copy the skill folder into your skills directory:
 
 ```bash
