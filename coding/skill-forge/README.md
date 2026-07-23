@@ -43,6 +43,8 @@ Or drop it in a project's `.claude/skills/` to share it with your team via git.
 
 The skill self-adapts per surface: full parallel evals and description optimization in Claude Code; inline testing with human review on claude.ai; static eval viewer in Cowork.
 
+**Script requirements** (Claude Code only): Python 3 with `pyyaml`. On a PEP-668-managed system Python (Homebrew/macOS default), install it in a venv: `python3 -m venv .venv && .venv/bin/pip install pyyaml`.
+
 ## Use
 
 ```
