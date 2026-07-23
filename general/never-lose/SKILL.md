@@ -5,17 +5,15 @@ description: >-
   "invert, always invert." Grills the user about a decision, hire, client, partner,
   channel, expansion, pricing change, or post-mortem by asking what would GUARANTEE
   failure, rejecting comfortable answers, auditing incentives, and converting the
-  findings into filed artifacts (checklists, tripwires, strategy pages). Use this
-  whenever the user asks to be grilled on a business decision, says "invert this,"
-  "never lose," "run the Munger lens," "what would guarantee this fails," "poke holes
-  in this business plan/hire/deal," asks how to avoid repeating a business mistake, or
-  wants a decision stress-tested before committing money, a hire, or a relationship.
-  Also use it for post-mortems ("make sure this never happens again"). Prefer this
-  over a generic critique whenever the subject is a business commitment: the user
-  wants an interrogation, not an essay. Exception: for a live real-estate
-  transaction moment (a specific deal, offer, buyer, or listing), prefer a
-  real-estate deal skill such as doolittle if installed; never-lose is for the
-  business behind the deals, not the deal itself.
+  findings into filed artifacts (checklists, tripwires, strategy pages). Use whenever
+  the user asks to be grilled on a business decision, says "invert this," "never
+  lose," "run the Munger lens," "what would guarantee this fails," "poke holes in
+  this business plan/hire/deal," wants a decision stress-tested before committing
+  money, a hire, or a relationship, or wants a post-mortem ("make sure this never
+  happens again"). Prefer this over generic critique for any business commitment:
+  the user wants an interrogation, not an essay. For a live real-estate deal moment,
+  prefer a deal skill like doolittle if installed — never-lose grills the business
+  behind the deals, not the deal itself.
 ---
 
 # Never Lose — the inversion grill
