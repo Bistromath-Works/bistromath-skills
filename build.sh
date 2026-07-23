@@ -4,7 +4,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 rm -rf dist && mkdir -p dist
-for skill in coding/munger general/never-lose real-estate/doolittle; do
+for manifest in */*/SKILL.md; do
+  skill=$(dirname "$manifest")
   name=$(basename "$skill")
   (cd "$(dirname "$skill")" && zip -rq "../dist/$name.zip" "$name" -x "*.DS_Store")
   echo "built dist/$name.zip"
