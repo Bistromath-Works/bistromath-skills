@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 # Build uploadable skill zips into dist/ (one per skill, folder at zip root —
-# the layout Claude Desktop's skill upload expects).
+# the layout Claude Desktop's skill upload expects). Canonical top-level skills
+# first; plugin-only skills (no canonical copy) are picked up from plugins/.
 set -euo pipefail
 cd "$(dirname "$0")"
+root=$(pwd)
 rm -rf dist && mkdir -p dist
-for manifest in */*/SKILL.md; do
+for manifest in */*/SKILL.md plugins/*/skills/*/SKILL.md; do
   skill=$(dirname "$manifest")
   name=$(basename "$skill")
-  (cd "$(dirname "$skill")" && zip -rq "../dist/$name.zip" "$name" -x "*.DS_Store")
+  [ -f "dist/$name.zip" ] && continue
+  (cd "$(dirname "$skill")" && zip -rq "$root/dist/$name.zip" "$name" -x "*.DS_Store")
   echo "built dist/$name.zip"
 done
