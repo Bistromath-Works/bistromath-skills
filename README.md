@@ -62,6 +62,7 @@ general/never-lose/
   SKILL.md              ← trigger description + interview ground rules, core moves, session shape
   references/
     moves.md            ← full move library with worked examples, loaded on demand
+    artifact-templates.md ← skeletons for screens, tripwires, decision-log entries, homework
 ```
 
 ---
@@ -82,6 +83,11 @@ Full docs: [real-estate/doolittle/README.md](real-estate/doolittle/README.md)
 
 ## Installation
 
+**Claude Desktop / claude.ai (Cowork) — the intended home for never-lose and doolittle:**
+
+1. Download the skill's `.zip` from the [latest release](https://github.com/Bistromath-Works/bistromath-skills/releases/latest) — no git or terminal needed. (Building from source: `./build.sh` puts the zips in `dist/`.)
+2. In Claude Desktop: **Settings → Capabilities → Skills → upload the zip.**
+
 **Claude Code:** copy the skill folder into your skills directory:
 
 ```bash
@@ -91,9 +97,7 @@ cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
 cp -r bistromath-skills/real-estate/doolittle ~/.claude/skills/doolittle
 ```
 
-Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install).
-
-**Claude.ai / Claude Desktop (Cowork):** zip the skill folder and upload it as a skill under Settings → Capabilities.
+Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install). munger's auto-fire hook is Claude Code-only; in Desktop it runs as a manual skill.
 
 ## License
 

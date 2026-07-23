@@ -5,14 +5,15 @@ description: >-
   "invert, always invert." Grills the user about a decision, hire, client, partner,
   channel, expansion, pricing change, or post-mortem by asking what would GUARANTEE
   failure, rejecting comfortable answers, auditing incentives, and converting the
-  findings into filed artifacts (checklists, tripwires, strategy pages). Use this
-  whenever the user asks to be grilled on a business decision, says "invert this,"
-  "never lose," "run the Munger lens," "what would guarantee this fails," "poke holes
-  in this business plan/hire/deal," asks how to avoid repeating a business mistake, or
-  wants a decision stress-tested before committing money, a hire, or a relationship.
-  Also use it for post-mortems ("make sure this never happens again"). Prefer this
-  over a generic critique whenever the subject is a business commitment: the user
-  wants an interrogation, not an essay.
+  findings into filed artifacts (checklists, tripwires, strategy pages). Use whenever
+  the user asks to be grilled on a business decision, says "invert this," "never
+  lose," "run the Munger lens," "what would guarantee this fails," "poke holes in
+  this business plan/hire/deal," wants a decision stress-tested before committing
+  money, a hire, or a relationship, or wants a post-mortem ("make sure this never
+  happens again"). Prefer this over generic critique for any business commitment:
+  the user wants an interrogation, not an essay. For a live real-estate deal moment,
+  prefer a deal skill like doolittle if installed — never-lose grills the business
+  behind the deals, not the deal itself.
 ---
 
 # Never Lose — the inversion grill
@@ -127,7 +128,16 @@ to file it: "That seems worth writing down. Want me to file it?"
 - **If the user has a vault or knowledge base with conventions** (index, log,
   page format), follow those conventions exactly: create the page, update the index,
   append the log entry. Cross-link related pages.
+- **If there's no vault but you have file access** (Claude Desktop / Cowork),
+  maintain `never-lose-log.md` in the root of the accessible folder: append each
+  session's findings, artifacts produced, and homework with dates. Read it before
+  the first question of any later session — open homework from last time is the
+  freshest evidence there is.
 - **Otherwise**, write a standalone markdown file and give it to the user.
+
+Artifact skeletons (screen, tripwire, decision-log entry, homework block):
+`references/artifact-templates.md` — use them so artifacts stay consistent
+across sessions.
 
 Artifact rules: checklists lead with disqualifiers (talent/upside never enters until
 disqualifiers pass), every disqualifier gets a detection test and cites the real

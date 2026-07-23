@@ -27,7 +27,12 @@ Correction: {the one sentence that would have fixed it}
 
 ## Next assignment
 
-Drill: {D#} · Lesson: {which gap it targets} · Due: next session
+Drill: {D#} · Lesson: {which gap it targets} · Due: {next session, or a date for decay checks}
+
+## Decay checks (passed lessons awaiting re-verification)
+
+| Lesson | Passed on | Re-check after | Result |
+|---|---|---|---|
 
 ## Demand notes
 
