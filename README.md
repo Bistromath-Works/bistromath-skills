@@ -14,6 +14,10 @@ The repo is split by where the skill runs:
 |---|---|---|
 | [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
 | [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
+| [grill-me](general/grill-me/) | general | Relentless one-question-at-a-time interview that stress-tests a plan, design, or decision — depth chooser, decision-tree walking, recommendations with every question. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
+| [grill-with-docs](general/grill-with-docs/) | general | grill-me plus domain awareness: challenges the plan against CONTEXT.md, ADRs, and the glossary, producing doc updates as decisions crystallize. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
+| [teach](general/teach/) | general | Multi-session teaching workspace — mission-grounded lessons, learning records, reference docs, zone of proximal development |
+| [polite-boundary-setter-style](general/polite-boundary-setter-style/) | general | Writing style: polite but firm boundary-setting for challenging interpersonal situations |
 | [doolittle](real-estate/doolittle/) | real-estate | Deal-side copilot that keeps deals alive — preps, triages, and debriefs agents against a veteran lender's standard, and coaches between deals |
 
 Yes, both are Munger. Inversion works on code and on business decisions; the two skills are siblings — one grills the build, the other grills the builder.
@@ -93,6 +97,10 @@ Full docs: [real-estate/doolittle/README.md](real-estate/doolittle/README.md)
 ```bash
 git clone https://github.com/Bistromath-Works/bistromath-skills.git
 cp -r bistromath-skills/general/never-lose ~/.claude/skills/never-lose
+cp -r bistromath-skills/general/grill-me ~/.claude/skills/grill-me
+cp -r bistromath-skills/general/grill-with-docs ~/.claude/skills/grill-with-docs
+cp -r bistromath-skills/general/teach ~/.claude/skills/teach
+cp -r bistromath-skills/general/polite-boundary-setter-style ~/.claude/skills/polite-boundary-setter-style
 cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
 cp -r bistromath-skills/real-estate/doolittle ~/.claude/skills/doolittle
 ```
