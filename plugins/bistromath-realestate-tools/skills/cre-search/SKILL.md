@@ -71,10 +71,10 @@ Sites searched: Crexi (anonymous), LoopNet (logged in), PropertyDrive (anonymous
 |---|---|---|---|---|---|---|
 | 2250 Pennsylvania Ave, Madison WI | $1,350,000 | 8.23% | 10,475 | Retail | NNN | [Crexi](url) · [LoopNet](url) · [PropertyDrive](url) |
 
-### Full inventory        <- only when results exceed the top-matches table
+### Full inventory        (only when results exceed the top-matches table)
 {remaining rows, same columns — grouped by city/submarket when a metro search spans suburbs}
 
-### Adjacent results      <- only when present
+### Adjacent results      (only when present)
 {rows the site filters returned but that miss a stated criterion: wrong type label, slightly over budget, undisclosed cap on a cap-rate screen — each with the reason shown}
 
 Notes: {filters post-applied, sites skipped and why, price mismatches, thin-result retries}
