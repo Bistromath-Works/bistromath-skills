@@ -9,7 +9,7 @@ https://www.loopnet.com/search/retail-properties/madison-wi/for-sale/nnn-propert
 ## URL structure
 
 ```
-loopnet.com/search/<type-slug>/<city>-<st>/for-sale/[nnn-properties/]?<bounds>
+loopnet.com/search/{type-slug}/{city}-{st}/for-sale/[nnn-properties/]?{bounds}
 ```
 
 | Segment/param | Values | Notes |

@@ -1,6 +1,6 @@
 ---
 name: cre-search
-description: Search Crexi, LoopNet, and PropertyDrive simultaneously for commercial properties matching the user's criteria (price range, property type, market, cap rate, NNN vs gross lease), using the user's own logged-in Chrome via claude-in-chrome. Produces one deduplicated comparison table instead of three browser sessions. Use whenever the user wants to find commercial real estate for sale — "find me NNN retail in Madison under $2M", "search for industrial properties", "what's for sale in <market>", "screen for cap rate above X" — or names Crexi, LoopNet, or PropertyDrive, even if they only mention one site. Do NOT use for residential property searches, property valuation/comps, lease-space searches for a tenant, or mortgage/financing questions.
+description: Search Crexi, LoopNet, and PropertyDrive simultaneously for commercial properties matching the user's criteria (price range, property type, market, cap rate, NNN vs gross lease), using the user's own logged-in Chrome via claude-in-chrome. Produces one deduplicated comparison table instead of three browser sessions. Use whenever the user wants to find commercial real estate for sale — "find me NNN retail in Madison under $2M", "search for industrial properties", "what's for sale in {market}", "screen for cap rate above X" — or names Crexi, LoopNet, or PropertyDrive, even if they only mention one site. Do NOT use for residential property searches, property valuation/comps, lease-space searches for a tenant, or mortgage/financing questions.
 ---
 
 # CRE Search
@@ -60,24 +60,24 @@ Site type filters are loose — a Milwaukee "industrial" search returned rows la
 The reader is a broker scanning for a client between calls — they need the short answer before the inventory. ALWAYS this shape:
 
 ```
-## CRE Search: <criteria one-liner>
+## CRE Search: {criteria one-liner}
 
 Sites searched: Crexi (anonymous), LoopNet (logged in), PropertyDrive (anonymous) — N unique properties
 
 ### Top matches
-<the 3-8 listings that best satisfy EVERY stated criterion — one line of "why it leads" each>
+{the 3-8 listings that best satisfy EVERY stated criterion — one line of "why it leads" each}
 
 | Address | Price | Cap | SF | Type | Lease | Sources |
 |---|---|---|---|---|---|---|
 | 2250 Pennsylvania Ave, Madison WI | $1,350,000 | 8.23% | 10,475 | Retail | NNN | [Crexi](url) · [LoopNet](url) · [PropertyDrive](url) |
 
-### Full inventory        <- only when results exceed the top-matches table
-<remaining rows, same columns — grouped by city/submarket when a metro search spans suburbs>
+### Full inventory        (only when results exceed the top-matches table)
+{remaining rows, same columns — grouped by city/submarket when a metro search spans suburbs}
 
-### Adjacent results      <- only when present
-<rows the site filters returned but that miss a stated criterion: wrong type label, slightly over budget, undisclosed cap on a cap-rate screen — each with the reason shown>
+### Adjacent results      (only when present)
+{rows the site filters returned but that miss a stated criterion: wrong type label, slightly over budget, undisclosed cap on a cap-rate screen — each with the reason shown}
 
-Notes: <filters post-applied, sites skipped and why, price mismatches, thin-result retries>
+Notes: {filters post-applied, sites skipped and why, price mismatches, thin-result retries}
 ```
 
 A 30-row wall of identical columns is unreadable (verified user complaint); the tiering exists so scale never costs scannability. Under ~10 results, skip the tiers — one table plus Notes. Sort by cap rate descending when cap rate was a criterion, otherwise by price ascending. Every listing links to its source page — the user's next step is always opening the listing.
