@@ -1,0 +1,44 @@
+{
+  "skill_name": "cre-search",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Find me NNN retail properties for sale in Madison, WI under $2M with a cap rate above 6%.",
+      "expected_output": "One merged table drawing from Crexi, LoopNet, and PropertyDrive; 2250 Pennsylvania Ave deduped across sites with all source links; cap rate shown (8.23% from LoopNet); NNN handled via LoopNet path filter + post-filter elsewhere, not via Crexi URL lease filter.",
+      "files": [],
+      "assertions": [
+        "Finds 2250 Pennsylvania Ave at $1,350,000 with 8.23% cap rate",
+        "Finds 2008 Fish Hatchery Rd at $1,195,000 (~7.95% cap, Crexi-only listing)",
+        "2250 Pennsylvania Ave is presented as ONE row/entry attributed to multiple sites (deduped), not repeated per site",
+        "Listings with undisclosed cap or lease type are shown as n/a or near-misses rather than silently dropped",
+        "Every listed property links to its source listing page(s)"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "What industrial buildings are for sale in Milwaukee between $1M and $3M? Check Crexi and LoopNet.",
+      "expected_output": "Correct market/type/price translation for both named sites; PropertyDrive either included as a bonus (Milwaukee is in its coverage) or its omission noted; results table with source links.",
+      "files": [],
+      "assertions": [
+        "Both Crexi and LoopNet were searched with industrial type and $1M-$3M price filters applied",
+        "Cross-listed properties are merged into single entries carrying both source links",
+        "All main-table prices fall within $1M-$3M",
+        "5201 W Clinton Ave (6.00% cap, ~$1.38M) appears in the results",
+        "Output is one merged table (not two separate per-site lists) with clickable source links"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I've got a 1031 buyer looking for multifamily in Madison, budget around $1.5M — what's on the market right now?",
+      "expected_output": "Vague budget interpreted as a sensible band (~$1M-$2M) and stated; multifamily searched on all three sites; deduped table sorted by price; notes explain interpretation.",
+      "files": [],
+      "assertions": [
+        "The vague 'around $1.5M' budget is translated into an explicit price band that is stated in the output",
+        "25 Coronado Ct is found and deduped across Crexi and LoopNet into one entry",
+        "All three sites (Crexi, LoopNet, PropertyDrive) are searched, or any skipped site is named with a reason",
+        "PropertyDrive-only listing 736 E Johnson St is surfaced (coverage the national sites miss)",
+        "Results form a single table with per-listing source links"
+      ]
+    }
+  ]
+}
