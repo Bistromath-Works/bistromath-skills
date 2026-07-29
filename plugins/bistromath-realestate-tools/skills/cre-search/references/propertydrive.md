@@ -15,7 +15,7 @@ https://www.propertydrive.com/search-listings/?sale=1&ptype%5B%5D=2&bld_min_pric
 | For sale / lease | `sale=1` / `lease=1` (lease unverified) | |
 | Property type | `ptype[]=N` (encode as `ptype%5B%5D=N`) | Numeric ids. Verified: 2 = Retail, 3 = Industrial. UI order suggests 1 Office, 4 Multi-Family, 5 Special Purpose, 6 Land, 7 Business, 8 Co-Working — unverified; confirm via the FILTERS panel if a type matters |
 | Price | `bld_min_price=N&bld_max_price=N` | "bld" = building sale price; land and business prices have their own fields in the UI |
-| Market | `map_lat=<lat>&map_lng=<lng>&map_zoom=13` | RESULTS ARE MAP-VIEWPORT-SCOPED — there is no city parameter. Center on the market (zoom 12–13 ≈ one metro; 10–11 for a wider region). Madison: 43.0769, -89.3810. Milwaukee: 43.0389, -87.9065. Green Bay: 44.5133, -88.0133 |
+| Market | `map_lat={lat}&map_lng={lng}&map_zoom=13` | RESULTS ARE MAP-VIEWPORT-SCOPED — there is no city parameter. Center on the market (zoom 12–13 ≈ one metro; 10–11 for a wider region). Madison: 43.0769, -89.3810. Milwaukee: 43.0389, -87.9065. Green Bay: 44.5133, -88.0133 |
 | Cap rate / lease type | none | Post-filter from detail pages |
 
 `spage=1` is pagination; max 200 results per page.
