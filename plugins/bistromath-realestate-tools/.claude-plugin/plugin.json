@@ -1,7 +1,7 @@
 {
   "name": "bistromath-realestate-tools",
-  "version": "0.1.0",
-  "description": "BistroMath Real Estate Tools \u2014 8 skills for working agents: comps and pricing (comp-crusher), listing marketing (listing-arsenal), open houses (open-house-machine), sphere nurture (sphere-engine), prospecting (prospector) \u2014 written by Miron Briley/CyclSales (MIT) and repackaged with full credit \u2014 plus BistroMathWorks originals: newsletter-analyzer, presentation-strategist, and offer-extractor for mortgage client emails.",
+  "version": "0.2.0",
+  "description": "BistroMath Real Estate Tools — 9 skills for working agents: comps and pricing (comp-crusher), listing marketing (listing-arsenal), open houses (open-house-machine), sphere nurture (sphere-engine), prospecting (prospector) — written by Miron Briley/CyclSales (MIT) and repackaged with full credit — plus BistroMathWorks originals: newsletter-analyzer, presentation-strategist, offer-extractor for mortgage client emails, and cre-search for one-prompt commercial property search across Crexi, LoopNet, and PropertyDrive.",
   "author": {
     "name": "BistroMathWorks",
     "email": "info@bistromathworks.com"
@@ -15,6 +15,7 @@
     "listing-marketing",
     "open-house",
     "prospecting",
-    "mortgage"
+    "mortgage",
+    "commercial-real-estate"
   ]
 }

@@ -1,6 +1,6 @@
 # BistroMath Real Estate Tools
 
-Eight skills for working real estate agents — pricing, marketing, prospecting, client communication, and mortgage literacy. Install once, everything loads.
+Nine skills for working real estate agents — pricing, marketing, prospecting, client communication, mortgage literacy, and commercial property search. Install once, everything loads.
 
 ## Skills
 
@@ -14,10 +14,12 @@ Eight skills for working real estate agents — pricing, marketing, prospecting,
 | **newsletter-analyzer** | Grades agent newsletters on the four elements that drive engagement | BistroMathWorks |
 | **presentation-strategist** | Narrative structure and content strategy for presentations | BistroMathWorks |
 | **offer-extractor** | Turns accepted offers into professional client emails with timelines and doc checklists | BistroMathWorks |
+| **cre-search** | One-prompt commercial property search across Crexi, LoopNet, and PropertyDrive — merged, deduped table with source links | BistroMathWorks |
 
 ## Setup notes
 
 - **offer-extractor**: replace the bracketed `[YOUR TEAM NAME]`-style placeholders in its SKILL.md and `references/email_templates.md` with your team's details before first use.
+- **cre-search**: requires the Claude in Chrome browser extension, with site permissions granted for crexi.com, loopnet.com, and propertydrive.com. Uses your own logged-in sessions — no credentials stored. PropertyDrive covers Wisconsin only.
 - The CyclSales skills work best with Perplexity and Firecrawl MCP servers connected for live property/market data; without them, they fall back to manual input.
 - Some skills reference companions (/market-intel, /nurture-coach, /lead-recon) from the original CyclSales repo that aren't bundled here — grab them from the source if you want the full set.
 
