@@ -31,6 +31,7 @@ The repo is split by where the skill runs:
 |---|---|---|
 | [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
 | [skill-forge](coding/skill-forge/) | coding | TDD for skills: baseline without the skill (RED), write minimal (GREEN), pressure-test until agents stop rationalizing (REFACTOR) — with eval runner, benchmarks, and a description optimizer. Fork of Anthropic's skill-creator, Apache 2.0 |
+| [project-md-creator](coding/project-md-creator/) | coding | Writes and trims CLAUDE.md files down to only what Claude would get wrong without them: edit mode cuts discoverable, generic, and duplicate lines under a 100-line cap; create mode scaffolds just Commands, Architecture, Conventions, and Gotchas |
 | [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
 | [grill-me](general/grill-me/) | general | Relentless one-question-at-a-time interview that stress-tests a plan, design, or decision — depth chooser, decision-tree walking, recommendations with every question. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
 | [grill-with-docs](general/grill-with-docs/) | general | grill-me plus domain awareness: challenges the plan against CONTEXT.md, ADRs, and the glossary, producing doc updates as decisions crystallize. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
@@ -110,7 +111,7 @@ Full docs: [real-estate/doolittle/README.md](real-estate/doolittle/README.md)
 1. Download the skill's `.zip` from the [latest release](https://github.com/Bistromath-Works/bistromath-skills/releases/latest) — no git or terminal needed. (Building from source: `./build.sh` puts the zips in `dist/`.)
 2. In Claude Desktop: **Settings → Capabilities → Skills → upload the zip.**
 
-Release zips cover every skill in the repo — the seven listed above plus the plugin-bundled ones (the eight [realestate-tools](plugins/bistromath-realestate-tools/) skills and ideation-partner).
+Release zips cover every skill in the repo — every skill in the table above plus the plugin-bundled ones (the eight [realestate-tools](plugins/bistromath-realestate-tools/) skills and ideation-partner).
 
 **Claude Code:** copy the skill folder into your skills directory:
 
@@ -123,6 +124,7 @@ cp -r bistromath-skills/general/teach ~/.claude/skills/teach
 cp -r bistromath-skills/general/polite-boundary-setter-style ~/.claude/skills/polite-boundary-setter-style
 cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
 cp -r bistromath-skills/coding/skill-forge ~/.claude/skills/skill-forge
+cp -r bistromath-skills/coding/project-md-creator ~/.claude/skills/project-md-creator
 cp -r bistromath-skills/real-estate/doolittle ~/.claude/skills/doolittle
 ```
 
