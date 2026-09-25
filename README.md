@@ -12,7 +12,7 @@ The fastest way to get these skills: this repo is a Claude plugin marketplace. I
 /plugin install bistromath-realestate-tools@bistromath-skills
 ```
 
-- **[bistromath-thinking-tools](plugins/bistromath-thinking-tools/)** — grill-me, grill-with-docs, ideation-partner, never-lose, munger (auto-fire Stop hook wired), and doolittle in one shot.
+- **[bistromath-thinking-tools](plugins/bistromath-thinking-tools/)** — grill-me, grill-with-docs, ideation-partner, never-lose, munger (auto-fire Stop hook wired), doolittle, and project-md-creator in one shot.
 - **[bistromath-realestate-tools](plugins/bistromath-realestate-tools/)** — comp-crusher, listing-arsenal, open-house-machine, sphere-engine, prospector (by [Miron Briley / CyclSales](https://github.com/miron-tech/realtor-claude-skills), MIT, repackaged with credit), plus BistroMathWorks originals newsletter-analyzer, presentation-strategist, and offer-extractor.
 
 grill-me and grill-with-docs were written by [Matt Pocock](https://github.com/mattpocock) — bundled with full credit.
