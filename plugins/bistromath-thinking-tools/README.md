@@ -1,6 +1,6 @@
 # BistroMathWorks Thinking Tools
 
-Six skills for stress-testing plans, decisions, code, and deals. Install the plugin and they all load — no downloading individual skills.
+Seven skills for stress-testing plans, decisions, code, and deals, plus keeping CLAUDE.md files thin. Install the plugin and they all load — no downloading individual skills.
 
 ## Skills
 
@@ -12,6 +12,7 @@ Six skills for stress-testing plans, decisions, code, and deals. Install the plu
 | **never-lose** | "invert this", "never lose", "run the Munger lens" | Adversarial inversion interview for business decisions — what would GUARANTEE failure |
 | **munger** | "/munger", or auto-fires after a build turn | Post-build inversion review: invert → verify → fix → re-invert until clean |
 | **doolittle** | "doolittle", "prep me for", "my deal is wobbling" | Deal-side copilot for real estate agents: prep, live triage, debrief |
+| **project-md-creator** | "clean up my CLAUDE.md", "make a CLAUDE.md" | Writes and trims CLAUDE.md to only what Claude would get wrong without it, under a 100-line cap |
 
 ## The munger Stop hook
 
