@@ -1,0 +1,20 @@
+{
+  "name": "context-meter",
+  "version": "0.1.0",
+  "description": "Context meter for Claude Code: live token total in the status line, what's using the context window on the line below it, an exact per-category table on /tokens, and a heads-up at 80% full.",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "BistroMathWorks",
+    "email": "info@bistromathworks.com"
+  },
+  "homepage": "https://github.com/Bistromath-Works/bistromath-skills/tree/main/plugins/context-meter",
+  "repository": "https://github.com/Bistromath-Works/bistromath-skills",
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "tokens",
+    "status-line",
+    "mod",
+    "compact"
+  ]
+}
