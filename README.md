@@ -24,6 +24,7 @@ The repo is split by where the skill runs:
 - **`coding/`** — skills for Claude Code and agentic engineering workflows (hooks, reviews, build tooling)
 - **`general/`** — skills for Claude anywhere (claude.ai, Claude Desktop / Cowork, Claude Code) covering business, decisions, and everything that isn't code
 - **`real-estate/`** — skills for real estate agents and the deal side of the business (Cowork-first)
+- **`herdr/`** — add-ons for people who run Claude Code inside [herdr](https://herdr.dev), like [idea-queue-herdr](herdr/idea-queue-herdr/) (Ctrl+B i popup and tab-bar pill for the idea-queue mod)
 
 ## Skills
 
