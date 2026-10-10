@@ -60,6 +60,23 @@
         "pane",
         "workflow"
       ]
+    },
+    {
+      "name": "context-meter",
+      "source": "./plugins/context-meter",
+      "description": "Context meter mod for Claude Code: live token total in the status line, what's using the context window on the line below it (biggest first), an exact per-category table on /tokens, and a one-time heads-up at 80% full suggesting /compact.",
+      "version": "0.1.0",
+      "author": {
+        "name": "BistroMathWorks"
+      },
+      "license": "MIT",
+      "keywords": [
+        "context",
+        "tokens",
+        "status-line",
+        "mod",
+        "compact"
+      ]
     }
   ]
 }
