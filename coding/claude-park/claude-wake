@@ -1,6 +1,6 @@
 #!/usr/bin/env -S python3 -I
-"""Resume a session parked by claude-park: restore the tab's original label, then
-`claude --resume` in the session's original folder.
+"""Resume a session parked by claude-park: restore the herdr tab / tmux window
+label, then `claude --resume` in the session's original folder.
 
 Usage: claude-wake <session-id>
 """
@@ -9,7 +9,6 @@ import glob, json, os, subprocess, sys
 STATE = os.path.expanduser("~/.local/state/claude-park")
 
 session_id = sys.argv[1]
-pane_id = os.environ.get("HERDR_PANE_ID")
 
 # Claude stores transcripts per project folder; recover the folder from the transcript.
 cwd = os.path.expanduser("~")
@@ -21,13 +20,17 @@ for path in glob.glob(os.path.expanduser(f"~/.claude/projects/*/{session_id}.jso
                 cwd = rec["cwd"]
                 break
 
-if pane_id:
-    out = subprocess.run(["herdr", "pane", "get", pane_id], capture_output=True, text=True).stdout
-    tab_id = json.loads(out)["result"]["pane"]["tab_id"]
-    state = f"{STATE}/{session_id}.json"
-    if os.path.exists(state):
-        subprocess.run(["herdr", "tab", "rename", tab_id, json.load(open(state))["tab_label"]], capture_output=True)
-        os.remove(state)
+state_path = f"{STATE}/{session_id}.json"
+if os.path.exists(state_path):
+    state = json.load(open(state_path))
+    label = state["tab_label"]
+    if state.get("backend") == "tmux" and os.environ.get("TMUX_PANE"):
+        subprocess.run(["tmux", "rename-window", "-t", os.environ["TMUX_PANE"], label], capture_output=True)
+    elif os.environ.get("HERDR_PANE_ID"):
+        out = subprocess.run(["herdr", "pane", "get", os.environ["HERDR_PANE_ID"]], capture_output=True, text=True).stdout
+        tab_id = json.loads(out)["result"]["pane"]["tab_id"]
+        subprocess.run(["herdr", "tab", "rename", tab_id, label], capture_output=True)
+    os.remove(state_path)
 
 os.chdir(cwd)
 os.execvp("claude", ["claude", "--resume", session_id])
