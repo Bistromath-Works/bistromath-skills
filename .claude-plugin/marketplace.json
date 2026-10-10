@@ -43,6 +43,23 @@
         "mortgage",
         "commercial-real-estate"
       ]
+    },
+    {
+      "name": "idea-queue",
+      "source": "./plugins/idea-queue",
+      "description": "Idea queue mod for Claude Code: jot ideas while Claude works and each goes in at the right moment — build-on ideas after the turn, busy work when Claude sits idle (broader work plans first), new concepts when you press Send. Side pane with hotkeys, /idea, Auto/Paused switch, color-coded queue.",
+      "version": "0.1.0",
+      "author": {
+        "name": "BistroMathWorks"
+      },
+      "license": "MIT",
+      "keywords": [
+        "ideas",
+        "queue",
+        "mod",
+        "pane",
+        "workflow"
+      ]
     }
   ]
 }
