@@ -1,0 +1,81 @@
+#!/usr/bin/env -S python3 -I
+"""Park idle Claude Code sessions in herdr to free memory, without losing the tab.
+
+A herdr tab whose Claude session has been idle longer than IDLE_HOURS (and is
+not focused) gets: /exit sent to Claude, its tab relabelled "💤 <chat title>" so
+you can see what the chat was about, and `claude-wake <session-id>` pre-typed at
+the shell prompt. Press Enter to resume; claude-wake restores the old label.
+
+Usage: claude-park [--dry-run]
+Env:   CLAUDE_PARK_IDLE_HOURS (default 24)
+"""
+import json, os, subprocess, sys, time
+
+IDLE_HOURS = float(os.environ.get("CLAUDE_PARK_IDLE_HOURS", 24))
+SLEEP = "💤 "
+SESSIONS = os.path.expanduser("~/.claude/sessions")
+STATE = os.path.expanduser("~/.local/state/claude-park")
+
+
+def herdr(*args):
+    out = subprocess.run(["herdr", *args], capture_output=True, text=True, check=True).stdout
+    return json.loads(out)["result"] if out.strip().startswith("{") else None
+
+
+def alive(pid):
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+
+
+def claude_session(pane_id):
+    """Return Claude's own session record for the claude process in this pane."""
+    info = herdr("pane", "process-info", "--pane", pane_id)["process_info"]
+    for proc in info.get("foreground_processes", []):
+        path = f"{SESSIONS}/{proc['pid']}.json"
+        if proc["name"] == "claude" and os.path.exists(path):
+            return proc["pid"], json.load(open(path))
+    return None, None
+
+
+def park(agent, pid, sess, dry_run):
+    tab = herdr("tab", "get", agent["tab_id"])["tab"]
+    idle_h = (time.time() * 1000 - sess["updatedAt"]) / 3.6e6
+    print(f"park {agent['pane_id']} '{tab['label']}' idle {idle_h:.0f}h session {sess['sessionId']}")
+    if dry_run:
+        return
+    herdr("pane", "run", agent["pane_id"], "/exit")
+    for _ in range(30):
+        if not alive(pid):
+            break
+        time.sleep(1)
+    else:
+        print(f"  claude pid {pid} did not exit; leaving tab alone", file=sys.stderr)
+        return
+    title = agent.get("terminal_title_stripped") or ""
+    if title in ("", "Claude Code"):
+        title = tab["label"]
+    os.makedirs(STATE, exist_ok=True)
+    with open(f"{STATE}/{sess['sessionId']}.json", "w") as f:
+        json.dump({"tab_label": tab["label"]}, f)
+    herdr("tab", "rename", agent["tab_id"], SLEEP + title[:40])
+    herdr("pane", "send-text", agent["pane_id"], f"claude-wake {sess['sessionId']}")
+
+
+def main():
+    dry_run = "--dry-run" in sys.argv
+    cutoff_ms = time.time() * 1000 - IDLE_HOURS * 3.6e6
+    for agent in herdr("agent", "list")["agents"]:
+        if agent["agent"] != "claude" or agent["focused"] or agent["agent_status"] != "idle":
+            continue
+        pid, sess = claude_session(agent["pane_id"])
+        if sess and sess.get("status") == "idle" and sess["updatedAt"] < cutoff_ms:
+            park(agent, pid, sess, dry_run)
+
+
+if __name__ == "__main__":
+    main()

@@ -32,6 +32,7 @@ The repo is split by where the skill runs:
 | [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
 | [skill-forge](coding/skill-forge/) | coding | TDD for skills: baseline without the skill (RED), write minimal (GREEN), pressure-test until agents stop rationalizing (REFACTOR) — with eval runner, benchmarks, and a description optimizer. Fork of Anthropic's skill-creator, Apache 2.0 |
 | [project-md-creator](coding/project-md-creator/) | coding | Writes and trims CLAUDE.md files down to only what Claude would get wrong without them: edit mode cuts discoverable, generic, and duplicate lines under a 100-line cap; create mode scaffolds just Commands, Architecture, Conventions, and Gotchas |
+| [claude-park](coding/claude-park/) | coding | Sleeps idle Claude Code sessions in herdr to free memory without losing the tab: relabels it `💤 <chat title>`, press Enter to resume. Hourly via systemd (Linux) or launchd (macOS) |
 | [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
 | [grill-me](general/grill-me/) | general | Relentless one-question-at-a-time interview that stress-tests a plan, design, or decision — depth chooser, decision-tree walking, recommendations with every question. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
 | [grill-with-docs](general/grill-with-docs/) | general | grill-me plus domain awareness: challenges the plan against CONTEXT.md, ADRs, and the glossary, producing doc updates as decisions crystallize. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
@@ -125,10 +126,11 @@ cp -r bistromath-skills/general/polite-boundary-setter-style ~/.claude/skills/po
 cp -r bistromath-skills/coding/munger ~/.claude/skills/munger
 cp -r bistromath-skills/coding/skill-forge ~/.claude/skills/skill-forge
 cp -r bistromath-skills/coding/project-md-creator ~/.claude/skills/project-md-creator
+cp -r bistromath-skills/coding/claude-park ~/.claude/skills/claude-park
 cp -r bistromath-skills/real-estate/doolittle ~/.claude/skills/doolittle
 ```
 
-Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install). munger's auto-fire hook is Claude Code-only; in Desktop it runs as a manual skill.
+Or for a single project, place the folder in `.claude/skills/<name>/` inside the repo. The munger Stop hook needs one extra wiring step — see [coding/munger/README.md](coding/munger/README.md#install). munger's auto-fire hook is Claude Code-only; in Desktop it runs as a manual skill. claude-park also needs its scheduler installed: run `./install.sh` in its folder (see [coding/claude-park/README.md](coding/claude-park/README.md)).
 
 ## License
 
