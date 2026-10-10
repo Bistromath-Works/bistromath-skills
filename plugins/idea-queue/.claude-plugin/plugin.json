@@ -1,7 +1,7 @@
 {
   "name": "idea-queue",
   "version": "0.1.0",
-  "description": "Idea queue for Claude Code: jot ideas while Claude works, and each one goes in at the right moment \u2014 after the turn, when Claude is idle, or when you press Send. Side pane, /idea, optional herdr popup and status pill.",
+  "description": "Idea queue for Claude Code: jot ideas while Claude works, and each one goes in at the right moment \u2014 after the turn, when Claude is idle, or when you press Send. Side pane with hotkeys, /idea, Auto/Paused switch, color-coded queue.",
   "types": "./types/index.d.ts",
   "author": {
     "name": "BistroMathWorks",
@@ -15,7 +15,6 @@
     "queue",
     "mod",
     "pane",
-    "herdr",
     "workflow"
   ]
 }

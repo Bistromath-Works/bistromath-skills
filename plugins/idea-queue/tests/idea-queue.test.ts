@@ -110,6 +110,7 @@ test('the keys menu opens and its hotkey buttons work on every surface', async (
     expect(await ui.find({ type: 'Text', text: /jump into this pane/ })).toBeUndefined()
     await ui.press({ key: 'help' })
     expect(await ui.find({ type: 'Text', text: /jump into this pane/ })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: /in herdr/ })).toBeUndefined()
     await ui.press({ key: 'help' })
     expect(await ui.find({ type: 'Text', text: /jump into this pane/ })).toBeUndefined()
     await ui.unmount()
@@ -155,5 +156,7 @@ test('ideas from the herdr popup land in the queue of the matching pane', async 
 
   const ui = await $.ui.mount({ plugin: 'idea-queue', surface: 'terminal', component: 'Pane', requestId: 'idea-queue', props: {} as never })
   expect(await ui.find({ type: 'Text', text: /add tests/ })).toBeDefined()
+  await ui.press({ key: 'help' })
+  expect(await ui.find({ type: 'Text', text: /in herdr: add an idea/ })).toBeDefined()
   await ui.unmount()
 })

@@ -32,50 +32,11 @@ Needs a Claude Code version with mod (hooks module) support. Built and tested on
 
 Pane keys (click the pane, or `ctrl+x tab`, then highlight a button): **h** keys menu · **s** send all · **p** pause/auto · **t** next type. Letter keys work when a button is highlighted, not while typing in the Idea box.
 
-Note: Claude Code runs a typed `/idea` after the current turn ends, so for ideas *during* a build use the pane's Idea box (or the herdr popup below), which queue instantly.
+Note: Claude Code runs a typed `/idea` after the current turn ends, so for ideas *during* a build use the pane's Idea box, which queues instantly.
 
-## herdr extras (optional)
+## herdr (optional)
 
-If you run Claude Code inside [herdr](https://herdr.dev), you get a popup to add ideas from anywhere and a status pill in the tab bar. Tested with herdr 0.8.2.
-
-1. Get the two scripts:
-
-   ```sh
-   mkdir -p ~/.config/herdr/idea-queue && cd ~/.config/herdr/idea-queue
-   for f in idea-popup.sh idea-pill.sh; do
-     curl -fsSLO "https://raw.githubusercontent.com/Bistromath-Works/bistromath-skills/main/plugins/idea-queue/herdr/$f"
-   done
-   chmod +x idea-popup.sh idea-pill.sh
-   ```
-
-2. Add to `~/.config/herdr/config.toml` (merge `tab_bar_right` into your existing `[ui]` section if you have one):
-
-   ```toml
-   [ui]
-   tab_bar_right = [
-     { type = "command", command = "~/.config/herdr/idea-queue/idea-pill.sh", interval_seconds = 2, timeout_seconds = 2 },
-   ]
-
-   [[keys.command]]
-   key = "prefix+i"
-   type = "popup"
-   command = "~/.config/herdr/idea-queue/idea-popup.sh"
-   description = "add idea to Claude's idea queue (Ctrl+B, then i)"
-   width = 64
-   height = 12
-
-   [[keys.command]]
-   key = "prefix+shift+i"
-   type = "shell"
-   command = "~/.config/herdr/idea-queue/idea-popup.sh open"
-   description = "open Claude's idea queue pane (Ctrl+B, then Shift+I)"
-   ```
-
-3. Run `herdr server reload-config`.
-
-Now **Ctrl+B, then i** opens the popup: press 1–4 for the type, type the idea, Enter to queue, **Esc to cancel at any point**. It goes to the Claude in the pane you were on, even mid-build. **Ctrl+B, then Shift+I** opens the idea pane. The tab bar shows `💡 idea: Ctrl+B i`, or `💡 3 ideas (auto) · Ctrl+B i` while ideas wait, whenever the focused pane runs Claude.
-
-How it connects: the popup drops a small JSON file in `~/.local/state/idea-queue/<pane>/`; the mod in that pane picks it up within a second and writes the count the pill reads to `~/.local/state/idea-queue/<pane>.pill`. Needs `python3` for the popup.
+Run Claude Code inside [herdr](https://herdr.dev)? The separate [idea-queue-herdr](../../herdr/idea-queue-herdr/) add-on gives you a **Ctrl+B, then i** popup to add ideas from anywhere, even mid-build, and a status pill in herdr's tab bar. The mod works fully without it.
 
 ## Good to know
 

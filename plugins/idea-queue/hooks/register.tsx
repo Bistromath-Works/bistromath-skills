@@ -11,8 +11,8 @@ const isAuto = atom({ plugin: 'idea-queue', key: 'isAuto' } as const, true)
 const draftKind = atom({ plugin: 'idea-queue', key: 'draftKind' } as const, 'build')
 const isHelpOpen = atom({ plugin: 'idea-queue', key: 'isHelpOpen' } as const, false)
 
-// The keys menu, in plain words: [keys, what they do].
-const HELP: [string, string][] = [
+// The keys menu, in plain words: [keys, what they do, inside herdr only?].
+const HELP: [string, string, 'herdr'?][] = [
   ['ctrl+x tab', 'jump into this pane (or click it); Esc jumps back out'],
   ['Tab / arrows', 'move between the boxes and buttons'],
   ['Enter', 'queue the idea you typed, or press the highlighted button'],
@@ -23,8 +23,8 @@ const HELP: [string, string][] = [
   ['', 'letter keys work when a button is highlighted, not while typing an idea'],
   ['/idea busy: …', 'queue from the normal prompt (build: busy: broad: new:)'],
   ['/ideas send', 'send all · /ideas auto · /ideas pause · /ideas opens this pane'],
-  ['Ctrl+B, i', 'in herdr: add an idea from a popup, even mid-build'],
-  ['Ctrl+B, I', 'in herdr: open this pane (Shift+I)'],
+  ['Ctrl+B, i', 'in herdr: add an idea from a popup, even mid-build', 'herdr'],
+  ['Ctrl+B, I', 'in herdr: open this pane (Shift+I)', 'herdr'],
   ['build', 'sends right after Claude finishes a turn'],
   ['busy', 'sends after Claude sits idle 2 minutes, one at a time'],
   ['broad', 'like busy, but Claude plans first and waits for your OK'],
@@ -270,7 +270,8 @@ export const register: Register = on => {
     const auto = await read($, isAuto)
     const kind = await read($, draftKind)
     const isHelp = await read($, isHelpOpen)
-    const room = Math.max(1, (e.viewport?.rows ?? 24) - 13 - (isHelp ? HELP.length + 1 : 0))
+    const help = HELP.filter(([, , only]) => !only || pillPath)
+    const room = Math.max(1, (e.viewport?.rows ?? 24) - 13 - (isHelp ? help.length + 1 : 0))
     const nextKind = KINDS[(KINDS.findIndex(k => k.value === kind) + 1) % KINDS.length]!.value
 
     return (
@@ -288,7 +289,7 @@ export const register: Register = on => {
         </Box>
         {isHelp && (
           <Box flexDirection="column" borderStyle="round" paddingX={1}>
-            {HELP.map(([keys, what]) => (
+            {help.map(([keys, what]) => (
               <Text>
                 <Text bold>{keys.padEnd(14)}</Text>
                 <Text dimColor>{what}</Text>
