@@ -19,7 +19,7 @@ The fastest way to get these skills: this repo is a Claude plugin marketplace. I
 - **[idea-queue](plugins/idea-queue/)** — a Claude Code mod: jot ideas while Claude works and each goes in at the right moment (after the turn, when idle, or when you press Send). Side pane, `/idea`, Auto/Paused switch, color-coded queue.
 - **[context-meter](plugins/context-meter/)** — a Claude Code mod: live token total in the status line, what's using the context window on the line below it, and an exact table on `/tokens`.
 
-grill-me and grill-with-docs were written by [Matt Pocock](https://github.com/mattpocock) — bundled with full credit.
+grill-me, grill-with-docs and teach were written by [Matt Pocock](https://github.com/mattpocock). The versions here are adapted, with full credit, so they work in claude.ai and Claude Desktop. Working in a coding agent? Use Matt's originals instead: `/plugin install mattpocock-skills@claude-plugins-official` in Claude Code, or [mattpocock/skills](https://github.com/mattpocock/skills).
 
 Prefer individual skills? Zip downloads and manual install are in [Installation](#installation) below.
 
@@ -37,11 +37,12 @@ The repo is split by where the skill runs:
 | [munger](coding/munger/) | coding | Post-build inversion review — "how would I guarantee this fails?" — with an auto-firing Stop hook for Claude Code |
 | [skill-forge](coding/skill-forge/) | coding | TDD for skills: baseline without the skill (RED), write minimal (GREEN), pressure-test until agents stop rationalizing (REFACTOR) — with eval runner, benchmarks, and a description optimizer. Fork of Anthropic's skill-creator, Apache 2.0 |
 | [project-md-creator](coding/project-md-creator/) | coding | Writes and trims CLAUDE.md files down to only what Claude would get wrong without them: edit mode cuts discoverable, generic, and duplicate lines under a 100-line cap; create mode scaffolds just Commands, Architecture, Conventions, and Gotchas |
+| [Matt Pocock's originals](https://github.com/mattpocock/skills) | coding | grill-me, grill-with-docs, teach and the rest of Matt's skills, as he maintains them, for coding agents: `/plugin install mattpocock-skills@claude-plugins-official`. The `general/` versions below are adapted from these for claude.ai |
 | [claude-park](coding/claude-park/) | coding | Sleeps idle Claude Code sessions in herdr or tmux to free memory without losing the tab: relabels it `💤 <chat title>`, press Enter to resume. Hourly via systemd (Linux) or launchd (macOS) |
 | [never-lose](general/never-lose/) | general | Adversarial inversion interview for business decisions, modeled on Charlie Munger's "invert, always invert" |
 | [grill-me](general/grill-me/) | general | Relentless one-question-at-a-time interview that stress-tests a plan, design, or decision — depth chooser, decision-tree walking, recommendations with every question. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
 | [grill-with-docs](general/grill-with-docs/) | general | grill-me plus domain awareness: challenges the plan against CONTEXT.md, ADRs, and the glossary, producing doc updates as decisions crystallize. By [Matt Pocock](https://github.com/mattpocock), app-native distillation |
-| [teach](general/teach/) | general | Multi-session teaching workspace — mission-grounded lessons, learning records, reference docs, zone of proximal development |
+| [teach](general/teach/) | general | A personal course over several sessions: mission-grounded lessons as interactive artifacts, learning records and a glossary kept in one course file you save to a Claude Project. By [Matt Pocock](https://github.com/mattpocock), app-native adaptation |
 | [polite-boundary-setter-style](general/polite-boundary-setter-style/) | general | Writing style: polite but firm boundary-setting for challenging interpersonal situations |
 | [doolittle](real-estate/doolittle/) | real-estate | Deal-side copilot that keeps deals alive — preps, triages, and debriefs agents against a veteran lender's standard, and coaches between deals |
 
