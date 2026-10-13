@@ -160,3 +160,22 @@ test('ideas from the herdr popup land in the queue of the matching pane', async 
   expect(await ui.find({ type: 'Text', text: /in herdr: add an idea/ })).toBeDefined()
   await ui.unmount()
 })
+
+test('a waiting idea can change type, and then sends the way its new type does', async ($, on) => {
+  const { sent, clock } = world(on)
+  await $.session.start({ cwd: '/tmp', surface: 'terminal', isInteractive: true })
+  await $.command.run({ command: 'idea', args: 'new: billing' } as never)
+  const ui = await $.ui.mount({ plugin: 'idea-queue', surface: 'terminal', component: 'Pane', requestId: 'idea-queue', props: {} as never })
+  const tag = await ui.find({ type: 'Button', text: '[new]' })
+  expect(tag).toBeDefined()
+  // new → build → busy
+  await ui.press({ key: tag!.key! })
+  expect((await ui.find({ key: tag!.key! }))?.text).toBe('[build]')
+  await ui.press({ key: tag!.key! })
+  expect((await ui.find({ key: tag!.key! }))?.text).toBe('[busy]')
+  await ui.unmount()
+
+  await finishTurn($)
+  await clock.advance(IDLE)
+  expect(sent).toEqual([expect.stringContaining('billing')])
+})
