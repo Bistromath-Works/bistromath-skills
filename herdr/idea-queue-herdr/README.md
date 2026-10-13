@@ -40,4 +40,4 @@ Everything the installer adds to `config.toml` is marked `idea-queue-herdr`; uni
 
 The popup drops a small JSON file in `~/.local/state/idea-queue/<pane>/`. The idea-queue mod, running in that pane, picks it up within a second, and writes the count the pill reads to `~/.local/state/idea-queue/<pane>.pill`. Nothing leaves your machine.
 
-MIT — BistroMathWorks.
+MIT — Bistromath Works.
