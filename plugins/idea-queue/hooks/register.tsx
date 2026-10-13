@@ -20,6 +20,7 @@ const HELP: [string, string, 'herdr'?][] = [
   ['s', 'send every waiting idea now'],
   ['p', 'switch between Auto and Paused'],
   ['t', 'change the type for your next idea'],
+  ['[type]', 'press the [build] / [busy] … tag on a waiting idea to change its type'],
   ['', 'letter keys work when a button is highlighted, not while typing an idea'],
   ['/idea busy: …', 'queue from the normal prompt (build: busy: broad: new:)'],
   ['/ideas send', 'send all · /ideas auto · /ideas pause · /ideas opens this pane'],
@@ -166,6 +167,16 @@ async function addIdea($: EngineInterface, text: string, kind: IdeaKind) {
   const idea: Idea = { id: `${await $.clock.now()}-${Math.random()}`, text: text.trim(), kind }
   await update($, ideas, list => [...list, idea])
   await refreshStatus($)
+  await armIdle($)
+}
+
+// Moves a waiting idea to the next type; it then sends the way its new type does.
+async function cycleKind($: EngineInterface, id: string) {
+  await update($, ideas, list =>
+    list.map(idea =>
+      idea.id === id ? { ...idea, kind: KINDS[(KINDS.findIndex(k => k.value === idea.kind) + 1) % KINDS.length]!.value } : idea,
+    ),
+  )
   await armIdle($)
 }
 
@@ -347,9 +358,14 @@ export const register: Register = on => {
           <Box key={idea.id}>
             <Button key={`send-${idea.id}`} label="send" onPress={() => void send($, [idea])} />
             <Button key={`drop-${idea.id}`} label="x" onPress={() => void update($, ideas, all => all.filter(one => one.id !== idea.id)).then(() => refreshStatus($))} />
+            <Button key={`kind-${idea.id}`} plain onPress={() => void cycleKind($, idea.id)}>
+              <Text color={colorOf(idea.kind)} bold>
+                [{tagOf(idea.kind)}]
+              </Text>
+            </Button>
             <Text color={colorOf(idea.kind)} dimColor={!auto}>
               {' '}
-              <Text bold>[{tagOf(idea.kind)}]</Text> {idea.text}
+              {idea.text}
             </Text>
           </Box>
         ))}

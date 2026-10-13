@@ -25,7 +25,7 @@ Needs a Claude Code version with mod (hooks module) support. Built and tested on
 
 ## Use it
 
-- **The pane** opens beside the chat when your terminal is wide enough, or run `/ideas`. Pick a type, type the idea, press Enter. Each waiting idea has **send** and **x** buttons.
+- **The pane** opens beside the chat when your terminal is wide enough, or run `/ideas`. Pick a type, type the idea, press Enter. Each waiting idea has **send** and **x** buttons, and its colored **[type]** tag is a button too: press it to change that idea's type (build → busy → broad → new).
 - **`/idea <text>`** queues from the normal prompt. Prefix the type: `/idea busy: add tests`, `/idea broad: tidy settings`, `/idea build: also mobile`, `/idea new: billing`. No prefix uses the type picked in the pane.
 - **`/ideas send`** sends everything waiting · **`/ideas auto`** / **`/ideas pause`** flip the switch.
 - The status line shows `💡 3 ideas (auto)` while ideas wait.
