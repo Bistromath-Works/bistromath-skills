@@ -19,7 +19,7 @@ done  x   2. [later] Rotate the old API key next month
 - **You tick them off.** Press **done** in the pane, or type `/foryou done 2`. Claude then gets "Done from my For-you queue: …" and carries on. **x** removes a task without telling Claude.
 - **Tasks stay with the project folder**, across chats and restarts, so later work is still there next time.
 - **Where you see it:**
-  - The pane opens by itself when tasks are waiting, or run `/foryou`.
+  - The pane opens beside the chat when a session starts (next to the idea queue, if you use it), or run `/foryou`.
   - The status line shows `📋 2 for you · 1 blocking`.
   - You get a desktop/terminal notification when Claude adds a blocking or waiting task.
 

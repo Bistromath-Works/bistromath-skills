@@ -133,7 +133,7 @@ export const register: Register = on => {
 
     const list = await load($)
     await save($, list)
-    if (list.length) void $.ui.open({ id: PANE, title: 'For you' })
+    void $.ui.open({ id: PANE, title: 'For you' })
 
     return next(e)
   })
