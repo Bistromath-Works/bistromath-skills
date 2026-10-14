@@ -10,6 +10,8 @@ const ideas = atom({ plugin: 'idea-queue', key: 'ideas' } as const, [])
 const isAuto = atom({ plugin: 'idea-queue', key: 'isAuto' } as const, true)
 const draftKind = atom({ plugin: 'idea-queue', key: 'draftKind' } as const, 'build')
 const isHelpOpen = atom({ plugin: 'idea-queue', key: 'isHelpOpen' } as const, false)
+// The waiting idea whose text is open for editing in the pane, if any.
+const editingId = atom({ plugin: 'idea-queue', key: 'editingId' } as const, null)
 
 // The keys menu, in plain words: [keys, what they do, inside herdr only?].
 const HELP: [string, string, 'herdr'?][] = [
@@ -21,6 +23,7 @@ const HELP: [string, string, 'herdr'?][] = [
   ['p', 'switch between Auto and Paused'],
   ['t', 'change the type for your next idea'],
   ['[type]', 'press the [build] / [busy] … tag on a waiting idea to change its type'],
+  ['edit', 'on a waiting idea: fix its text, Enter saves, cancel keeps it as it was'],
   ['', 'letter keys work when a button is highlighted, not while typing an idea'],
   ['/idea busy: …', 'queue from the normal prompt (build: busy: broad: new:)'],
   ['/ideas send', 'send all · /ideas auto · /ideas pause · /ideas opens this pane'],
@@ -156,7 +159,9 @@ async function armIdle($: EngineInterface) {
       if (isRunning || !(await read($, isAuto))) return
       // You've started typing: give you another idle window instead.
       if ((await $.prompt.read()).text.trim()) return armIdle($)
-      const next = (await read($, ideas)).find(idea => idea.kind === 'busy' || idea.kind === 'broader')
+      // An idea open for editing waits until you save it.
+      const editing = await read($, editingId)
+      const next = (await read($, ideas)).find(idea => (idea.kind === 'busy' || idea.kind === 'broader') && idea.id !== editing)
       if (next) await send($, [next])
     })()
   })
@@ -178,6 +183,12 @@ async function cycleKind($: EngineInterface, id: string) {
     ),
   )
   await armIdle($)
+}
+
+// Saves the edited text; an emptied box keeps the idea as it was.
+async function saveEdit($: EngineInterface, id: string, text: string) {
+  if (text.trim()) await update($, ideas, list => list.map(idea => (idea.id === id ? { ...idea, text: text.trim() } : idea)))
+  await update($, editingId, () => null)
 }
 
 async function setAuto($: EngineInterface, value: boolean) {
@@ -265,7 +276,8 @@ export const register: Register = on => {
     // An interrupt means you're here and steering: send nothing by itself.
     if (e.reason !== 'answer' || !(await read($, isAuto))) return result
 
-    const builds = (await read($, ideas)).filter(idea => idea.kind === 'build')
+    const editing = await read($, editingId)
+    const builds = (await read($, ideas)).filter(idea => idea.kind === 'build' && idea.id !== editing)
     if (builds.length) await send($, builds)
     else await armIdle($)
 
@@ -281,6 +293,7 @@ export const register: Register = on => {
     const auto = await read($, isAuto)
     const kind = await read($, draftKind)
     const isHelp = await read($, isHelpOpen)
+    const editing = await read($, editingId)
     const help = HELP.filter(([, , only]) => !only || pillPath)
     const room = Math.max(1, (e.viewport?.rows ?? 24) - 13 - (isHelp ? help.length + 1 : 0))
     const nextKind = KINDS[(KINDS.findIndex(k => k.value === kind) + 1) % KINDS.length]!.value
@@ -333,7 +346,7 @@ export const register: Register = on => {
               placeholder="type an idea, Enter to queue"
               value=""
               submitLabel="queue"
-              autoFocus
+              autoFocus={editing ? undefined : true}
               onSubmit={(text: string) => void addIdea($, text, kind)}
             />
           </Box>
@@ -354,10 +367,24 @@ export const register: Register = on => {
             ))}
           </Text>
         )}
-        {list.slice(0, room).map(idea => (
+        {list.slice(0, room).map(idea =>
+          fields && editing === idea.id ? (
+            <Box key={idea.id}>
+              <Button key={`cancel-${idea.id}`} label="cancel" onPress={() => void update($, editingId, () => null)} />
+              <fields.Input
+                key={`text-${idea.id}`}
+                label={`[${tagOf(idea.kind)}] `}
+                value={idea.text}
+                submitLabel="save"
+                autoFocus
+                onSubmit={(text: string) => void saveEdit($, idea.id, text)}
+              />
+            </Box>
+          ) : (
           <Box key={idea.id}>
             <Button key={`send-${idea.id}`} label="send" onPress={() => void send($, [idea])} />
             <Button key={`drop-${idea.id}`} label="x" onPress={() => void update($, ideas, all => all.filter(one => one.id !== idea.id)).then(() => refreshStatus($))} />
+            {fields && <Button key={`edit-${idea.id}`} label="edit" onPress={() => void update($, editingId, () => idea.id)} />}
             <Button key={`kind-${idea.id}`} plain onPress={() => void cycleKind($, idea.id)}>
               <Text color={colorOf(idea.kind)} bold>
                 [{tagOf(idea.kind)}]
@@ -368,7 +395,8 @@ export const register: Register = on => {
               {idea.text}
             </Text>
           </Box>
-        ))}
+          ),
+        )}
         {list.length > room && <Text dimColor>…and {list.length - room} more</Text>}
       </Box>
     )
