@@ -77,6 +77,23 @@
         "mod",
         "compact"
       ]
+    },
+    {
+      "name": "for-you",
+      "source": "./plugins/for-you",
+      "description": "For-you queue mod for Claude Code: Claude files the tasks it needs you to do into a side pane instead of burying them in its output. Blocking tasks pause Claude's edits and commands until you tick them off; tasks stay with the project folder.",
+      "version": "0.1.0",
+      "author": {
+        "name": "BistroMathWorks"
+      },
+      "license": "MIT",
+      "keywords": [
+        "tasks",
+        "queue",
+        "mod",
+        "pane",
+        "human-in-the-loop"
+      ]
     }
   ]
 }

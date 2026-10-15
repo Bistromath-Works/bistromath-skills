@@ -1,0 +1,14 @@
+{
+  "name": "for-you",
+  "version": "0.1.0",
+  "description": "For-you queue for Claude Code: Claude files the things it needs you to do into a list beside the chat instead of burying them in its output. Blocking tasks pause its edits and commands until you tick them off; tasks stay with the project folder.",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "BistroMathWorks",
+    "email": "info@bistromathworks.com"
+  },
+  "homepage": "https://github.com/Bistromath-Works/bistromath-skills/tree/main/plugins/for-you",
+  "repository": "https://github.com/Bistromath-Works/bistromath-skills",
+  "license": "MIT",
+  "keywords": ["tasks", "queue", "mod", "pane", "workflow", "human-in-the-loop"]
+}

@@ -12,12 +12,14 @@ The fastest way to get these skills: this repo is a Claude plugin marketplace. I
 /plugin install bistromath-realestate-tools@bistromath-skills
 /plugin install idea-queue@bistromath-skills
 /plugin install context-meter@bistromath-skills
+/plugin install for-you@bistromath-skills
 ```
 
 - **[bistromath-thinking-tools](plugins/bistromath-thinking-tools/)** — grill-me, grill-with-docs, ideation-partner, never-lose, munger (auto-fire Stop hook wired), doolittle, and project-md-creator in one shot.
 - **[bistromath-realestate-tools](plugins/bistromath-realestate-tools/)** — comp-crusher, listing-arsenal, open-house-machine, sphere-engine, prospector (by [Miron Briley / CyclSales](https://github.com/miron-tech/realtor-claude-skills), MIT, repackaged with credit), plus BistroMathWorks originals newsletter-analyzer, presentation-strategist, and offer-extractor.
 - **[idea-queue](plugins/idea-queue/)** — a Claude Code mod: jot ideas while Claude works and each goes in at the right moment (after the turn, when idle, or when you press Send). Side pane, `/idea`, Auto/Paused switch, color-coded queue.
 - **[context-meter](plugins/context-meter/)** — a Claude Code mod: live token total in the status line, what's using the context window on the line below it, and an exact table on `/tokens`.
+- **[for-you](plugins/for-you/)** — a Claude Code mod: Claude puts what it needs *you* to do into a side list instead of burying it in its output; blocking tasks pause its edits and commands until you tick them off.
 
 grill-me, grill-with-docs and teach were written by [Matt Pocock](https://github.com/mattpocock). The versions here are adapted, with full credit, so they work in claude.ai and Claude Desktop. Working in a coding agent? Use Matt's originals instead: `/plugin install mattpocock-skills@claude-plugins-official` in Claude Code, or [mattpocock/skills](https://github.com/mattpocock/skills).
 
