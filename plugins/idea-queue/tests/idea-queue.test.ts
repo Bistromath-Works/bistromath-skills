@@ -179,3 +179,30 @@ test('a waiting idea can change type, and then sends the way its new type does',
   await clock.advance(IDLE)
   expect(sent).toEqual([expect.stringContaining('billing')])
 })
+
+test('a waiting idea can be edited; it holds while open, and cancel keeps the old text', async ($, on) => {
+  const { sent, clock } = world(on)
+  await $.session.start({ cwd: '/tmp', surface: 'terminal', isInteractive: true })
+  await $.command.run({ command: 'idea', args: 'build: add tets' } as never)
+  const ui = await $.ui.mount({ plugin: 'idea-queue', surface: 'terminal', component: 'Pane', requestId: 'idea-queue', props: {} as never })
+  const edit = await ui.find({ type: 'Button', text: 'edit' })
+  const id = edit!.key!.slice('edit-'.length)
+
+  await ui.press({ key: edit!.key! })
+  await finishTurn($)
+  await clock.advance(0)
+  expect(sent).toHaveLength(0)
+  await ui.press({ key: `cancel-${id}` })
+  expect(await ui.find({ type: 'Text', text: /add tets/ })).toBeDefined()
+
+  await ui.press({ key: `edit-${id}` })
+  await ui.input({ key: `text-${id}`, text: 'add tests' })
+  expect(await ui.find({ type: 'Text', text: /add tests/ })).toBeDefined()
+  expect(await ui.find({ key: `text-${id}` })).toBeUndefined()
+
+  await ui.unmount()
+
+  await finishTurn($, 't2')
+  await clock.advance(0)
+  expect(sent).toEqual([expect.stringContaining('add tests')])
+})
